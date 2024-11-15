@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrăji Amuzante cu Imunitate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            width: 90%;
+            max-width: 300px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Introdu Vrăja Ta</h1>
+    <input type="text" id="spellInput" placeholder="Scrie aici vraja">
+    <button onclick="checkSpell()">Verifică Vrăja</button>
+    <p id="immunityPoints">Puncte de imunitate: 0</p>
+
+    <script>
+        const correctSpells = [
+            "Sare pisica-n pat",
+            "Transforma sandvisul in pizza",
+            "Buburuze, zburati la mine",
+            "Aduna toti pantofii",
+            "Indoaie lingura fermecata",
+            "Fa-l sa rada pe loc",
+            "Transforma apa in suc",
+            "Blocheaza orice manusa",
+            "Invoca pizza perfecta",
+            "Raceste gheata topita",
+            "Arunca-te pe canapea",
+            "Invoca hoarde de gogosi",
+            "Incetineste ora de culcare",
+            "Fii campion la cartofi",
+            "Ascunde telecomanda magica",
+            "Scapa de ciorapii pierduti",
+            "Ofera raspuns la test",
+            "Transforma laptele in cafea",
+            "Uita lucrul de facut",
+            "Inghetata fara sfarsit",
+            "Ia-ti o pauza mica",
+            "Evadeaza rutina plictisitoare",
+            "Striga ca o vrabiuta",
+            "Atrage toate pisicile",
+            "Invoca noroc la mancare",
+            "Apare briosa magica",
+            "Incurca toate culorile",
+            "Invarte farfuria in aer",
+            "Stranuta de trei ori",
+            "Invoca dulciuri ascunse",
+            "Castiga la jocul piatra",
+            "Da-mi ciocolata instant",
+            "Opreste alarma zgomotoasa",
+            "Zboara o frunza magica",
+            "Incuie usa invizibila",
+            "Oglinda, zambeste mie",
+            "Ascunde cheile deodata",
+            "Transforma ploaia-n confeti",
+            "Aduna praf magic alb",
+            "Activeaza mod lenes",
+            "Imbratiseaza copacul mare",
+            "Bautura magica de somn",
+            "Invoca lene de sambata",
+            "Incepe sa ploua jeleuri",
+            "Bucurie fara oprire",
+            "Aroma de briosa calda",
+            "Vei gasi nori roz",
+            "Aduna toate cartile",
+            "Devina expert in ras",
+            "Sare ciocolata-n pahar"
+        ];
+
+        const uniqueCodes = [
+            "M7KXZDS", "2AET151", "9SIS111", "ZR1UIUU", "YXLKUOQ", "24ZSX8C", "JEC22BJ",
+            "BYMM4VH", "KE62NIX", "8RTWRJB", "9KU00UO", "8TSXZ6K", "GEN66PW", "LOWE00V",
+            "45BCVQV", "QZDVOPG", "191YPOS", "GI6FVMO", "58MA48R", "NJ5LCN3", "8CIAZQ5",
+            "ZNALHX6", "DA6ZW9I", "8PGM4CQ", "36UBQ82", "S1KOYWJ", "KSRXHRW", "8OSGPY9",
+            "JW6ES6E", "OASOO1Y", "1QRJG6I", "41Q0L0D", "6UTZYKJ", "JMTWN6J", "CBVW2O0",
+            "4G1DTJT", "VGH2N98", "F8TB3DQ", "A2HG7NN", "2CO3UZY", "P3RH42B", "6OV74W2",
+            "JKAYVOS", "7WY1XMO", "OZ65JC9", "WV18DOP", "PYWL4W6", "02IKSA4", "2HS7PT6", "F0LYYAB"
+        ];
+
+        function updateImmunityPoints(points) {
+            localStorage.setItem("immunityPoints", points);
+            document.getElementById("immunityPoints").textContent = "Puncte de imunitate: " + points;
+        }
+
+        function checkSpell() {
+            const userInput = document.getElementById("spellInput").value.trim().toUpperCase();
+            
+            // Check for correct spell
+            if (correctSpells.some(spell => spell.toUpperCase() === userInput)) {
+                alert("Vraja corectă!");
+            } 
+            // Check for unique code
+            else if (uniqueCodes.includes(userInput)) {
+                alert("+1 punct de imunitate");
+                let points = parseInt(localStorage.getItem("immunityPoints") || "0");
+                updateImmunityPoints(points + 1);
+            } 
+            else {
+                alert("Mai încearcă");
+            }
+        }
+
+        // Initialize immunity points display
+        document.addEventListener("DOMContentLoaded", () => {
+            let points = parseInt(localStorage.getItem("immunityPoints") || "0");
+            updateImmunityPoints(points);
+        });
+    </script>
+</body>
+</html>
